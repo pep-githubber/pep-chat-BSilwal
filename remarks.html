@@ -1,0 +1,6 @@
+{% for user, remark, color in remarks %}
+  <div class="message">
+      <strong>{{user}}:</strong>
+      <span style="color:{{color}};">{{remark}}</span>
+  </div>
+{% endfor %}
