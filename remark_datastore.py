@@ -7,6 +7,35 @@ _LAST_GET_KEY_PREFIX = 'lastget'
 _LAST_POST_KEY = 'lastpost'
 
 
+import random
+
+ # Convert a decimal to a hex as a string 
+def decimaltoHex(decimalValue):
+    hex = ""
+    while decimalValue != 0:
+        hexValue = decimalValue % 16 
+        hex = toHexChar(hexValue) + hex
+        decimalValue = decimalValue // 16
+    
+    if (len(hex) < 2):
+        return "0" + str(hex)
+    return hex
+ 
+ # Convert an integer to a single hex digit in a character 
+def toHexChar(hexValue):
+    if 0 <= hexValue <= 9:
+        return chr(hexValue + ord('0'))
+    else:  # 10 <= hexValue <= 15
+        return chr(hexValue - 10 + ord('A'))
+
+ 
+A = random.randrange(0,255)
+B = random.randrange(0,255)
+C = random.randrange(0,255)
+
+randhexnm = "#" + str(decimaltoHex(A)) + str(decimaltoHex(B)) + str(decimaltoHex(C))
+
+
 class Remark(ndb.Model):
 
   user = ndb.StringProperty(required=True) # ID of the user who sent this.
@@ -25,7 +54,7 @@ def ReadRemarks(user_id):
       Remark.timestamp >= start_time).order(Remark.timestamp).fetch():
     user = remark.user
     text = remark.text
-    color = 'black'  # TODO(pep-students) Make messages appear a random color.
+    color = randomhexnm  # TODO(pep-students) Make messages appear a random color.
     remark_infos.append((user, text, color))
   return remark_infos
 
