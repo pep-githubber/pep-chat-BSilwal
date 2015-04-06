@@ -33,7 +33,7 @@ A = random.randrange(0,255)
 B = random.randrange(0,255)
 C = random.randrange(0,255)
 
-randhexnm = "#" + str(decimaltoHex(A)) + str(decimaltoHex(B)) + str(decimaltoHex(C))
+randhexnm = "#" + decimaltoHex(A) + decimaltoHex(B) + decimaltoHex(C)
 
 
 class Remark(ndb.Model):
